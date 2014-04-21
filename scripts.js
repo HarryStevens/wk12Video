@@ -97,7 +97,7 @@ function dataLoaded(UNEMP) {
 		var perValue = currValue / 100;
 
 		//Creating my array with the date and value number for the Google Viz
-		var currArray = [finalDate, perValue];
+		var currArray = [finalDate, perValue, currRow[2]];
 		dataArray.push(currArray);
 	}
 
@@ -105,6 +105,7 @@ function dataLoaded(UNEMP) {
 	var data = new google.visualization.DataTable();
 	data.addColumn('date', 'Date');
 	data.addColumn('number', 'Unemployment');
+	data.addColumn({type:'string', role:'annotation', 'p': {'html': true}});
 	data.addRows(dataArray);
 
 	//This section will format the unemployment data to add a percentage at the end
@@ -116,6 +117,9 @@ function dataLoaded(UNEMP) {
 	//This section draws the chart. It is taken from the Google line chart documentation.
 	var options = {
 		title : 'Select a date range to zoom in. Right click to zoom out.',
+		tooltip: {
+			isHtml: true
+		},
 		legend : {
 			position : 'none'
 		},
