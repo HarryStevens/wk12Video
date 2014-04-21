@@ -6,7 +6,7 @@
 var tableURL = "https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1_g7L00qKd8I9rNtTrWgS1iHzkh8SmTYy8oS_VC99+WHERE+DATE>=";
 var myKey = "&key=AIzaSyB-QJux9WIJmey5IJYzPImNzg-xP1gpvU8";
 var startYear = '';
-var endYear = '2030';
+var endYear = '';
 
 //1. Document ready calls pageLoaded function
 $(document).ready(pageLoaded);
@@ -21,8 +21,29 @@ function pageLoaded() {
 
 //3. googleLoaded function loads the data and calls the dataLoaded function
 function googleLoaded() {
+	
+	//History.js will handle the startyear and endyear
+	var urlData = History.getState().cleanUrl;	
+	var queryString = urlData.split("?")[1];
+	var defaultStart = '';
+	var defaultEnd = '';
+	
+	if ($.isEmptyObject(queryString)) {
+		defaultStart = "1948";
+		defaultEnd = "2014";
+	} else {
+		var defaultStartString = queryString.split("=")[1];
+		defaultStart = defaultStartString.split("&")[0];
+		defaultEnd = queryString.split("endyear=")[1];	
+	}
+	
+	if(defaultStart>defaultEnd) {
+		$("#chart_div").html("Start date cannot exceed end date.");
+	}
+	
 	$(".btn").on("click", clickHandler);
-	$("#year_1948").click();
+	$("#year_"+defaultStart).click();
+	$("#eyear_"+defaultEnd).click();
 }
 
 //4. Tells when a given button is clicked and adds the right data
@@ -46,6 +67,11 @@ function clickHandler(e) {
 	}
 
 	$.get(tableURL + "'" + startYear + "-01-01'+AND+DATE<='" + endYear + "-01-01'" + myKey, dataLoaded, "json");
+	
+	
+	//History.js for custom URLs
+	History.pushState({startyear:1}, "Data Visualization | Civilian Unemployment | "+startYear+" - "+endYear, "?startyear="+startYear+"&endyear="+endYear); // logs {state:1}, "State 1", "?state=1"
+	
 	$("#startdate").html(startYear);
 	$("#enddate").html(endYear);
 }
