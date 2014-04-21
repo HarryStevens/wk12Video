@@ -1,0 +1,89 @@
+body {
+	background-color: #d3d3d3;
+	margin: 0;
+	font-family: Arial,helvetica,sans-serif;
+}
+h1 {
+	display: table;
+	margin: auto;
+	font-family: Georgia;
+	color: #fff;
+}
+a:link,a:visited {
+	color: red;
+	text-decoration: none;
+}
+a:hover, a:active{
+	color: #fff;
+	text-decoration: none;
+}
+#headerWrapper {
+	background: none repeat scroll 0 0 #2F4779;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+	display: block;
+	padding: 10px 0;
+	position: absolute;
+	width: 100%;
+	padding-bottom: 30px;
+	padding-top: 30px;
+}
+#chart_div {
+	display: table;
+	margin: auto;
+	position: absolute;
+	margin-top: 15px;
+	width: 1200px;
+}
+#bodyWrapper {
+	display: table;
+	margin: auto;
+	text-align:center;
+	width:1200px;
+}
+.right {
+	float: right;
+	margin-right: 50px;
+	text-align: right;
+}
+.whiteText {
+	color:#fff;
+}
+#buttons {
+	display: table;
+	margin: 0 auto;
+	margin-top: 135px;
+}
+.btn {
+	float: left;
+	padding: 10px;
+	background-color: #fff;
+	color: #000;
+	margin-right: 10px;
+	border: 2px solid #000;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.btn:hover {
+	color: #aaa;
+	border: 2px solid #aaa;
+}
+#startdate {
+	display:inline;
+}
+#enddate {
+	display:inline;
+}
+.active {
+	border: 2px solid #aaa;
+	cursor: default;
+	color: #aaa;
+}
+.btn-section {
+	float:left;
+	padding: 10px;
+	font-weight: bold;
+	font-style: Georgia;
+}
+.rightspace20 {
+	margin-right: 20px;
+}
